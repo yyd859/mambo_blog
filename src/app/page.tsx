@@ -11,11 +11,10 @@ export default function Home() {
           你好 / Hello
         </h1>
         <p style={{ color: "var(--muted)", maxWidth: "52ch", lineHeight: 1.7, marginBottom: "0.5rem" }}>
-          这里是我的技术博客。记录编程、系统设计以及思考过程。
+          这里是我的博客, Mambo是我的小猫的名字。这个博客记录一切我身边有趣的，值得学习的地方，包括技术、设计、读书，思考方式等等。希望你也能在这里找到有价值的内容，和我一起成长。
         </p>
         <p style={{ color: "var(--muted)", maxWidth: "52ch", lineHeight: 1.7 }}>
-          A tech blog where I write about programming, system design, and thinking.
-          Posts appear in Chinese or English — sometimes both.
+          A blog where I write about everything interesting and worth learning around me, including technology, design, reading, and thinking methods. I hope you can find valuable content here and grow with me.
         </p>
       </section>
 
