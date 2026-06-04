@@ -17,29 +17,12 @@ export default function AboutPage() {
           This is Mambo blog — a place for technical thoughts written entirely by hand.
           No AI-generated content. Thinking and understanding cannot be replaced.
         </p>
-
         <hr />
-
-        <h2>写什么 / What I write about</h2>
-        <ul>
-          <li>编程与工程实践 / Programming &amp; engineering</li>
-          <li>系统设计与架构 / System design &amp; architecture</li>
-          <li>工具与效率 / Tools &amp; productivity</li>
-          <li>读书与思考 / Reading &amp; thinking</li>
-        </ul>
-
-        <h2>语言 / Language</h2>
-        <p>
-          文章用中文或英文写成，取决于内容和心情。每篇文章都会标注语言。
-        </p>
-        <p>
-          Posts are written in Chinese or English depending on the topic and mood.
-          Each post is labeled with its language.
-        </p>
-
         <h2>联系 / Contact</h2>
         <p>
-          可以通过 GitHub 找到我。/ Find me on GitHub.
+          Email: yingdongyang0305@outlook.com
+          <br />
+          LinkedIn: <a href="https://www.linkedin.com/in/yingdong-yang/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/yingdong-yang/</a>
         </p>
       </div>
     </div>
