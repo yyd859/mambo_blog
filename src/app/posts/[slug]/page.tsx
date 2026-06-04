@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = await getPost(slug);
   if (!post) return {};
-  return { title: `${post.title} — mambo blog`, description: post.summary };
+  return { title: `${post.title} — Mambo blog`, description: post.summary };
 }
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {

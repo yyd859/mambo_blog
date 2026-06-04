@@ -3,7 +3,7 @@ import "./globals.css";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "mambo blog",
+  title: "Mambo blog",
   description: "Tech blog — thinking and understanding cannot be replaced",
 };
 
@@ -29,7 +29,7 @@ export default function RootLayout({
                   letterSpacing: "-0.02em",
                 }}
               >
-                mambo blog
+                Mambo blog
               </Link>
               <div style={{ display: "flex", gap: "1.5rem", alignItems: "baseline" }}>
                 <Link href="/posts" style={{ color: "var(--muted)", textDecoration: "none", fontSize: "0.9rem", fontFamily: "system-ui, sans-serif" }}>

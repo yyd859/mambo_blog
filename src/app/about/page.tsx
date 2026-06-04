@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "关于 / About — mambo blog",
+  title: "关于 / About — Mambo blog",
 };
 
 export default function AboutPage() {
@@ -10,11 +10,11 @@ export default function AboutPage() {
       </h1>
       <div className="prose">
         <p>
-          这里是 mambo blog，一个记录技术思考的地方。内容不经过 AI 处理，每一个字都由人写就。
+          这里是 Mambo blog，一个记录技术思考的地方。内容不经过 AI 处理，每一个字都由人写就。
           思考与理解，是无法被替代的。
         </p>
         <p>
-          This is mambo blog — a place for technical thoughts written entirely by hand.
+          This is Mambo blog — a place for technical thoughts written entirely by hand.
           No AI-generated content. Thinking and understanding cannot be replaced.
         </p>
 
