@@ -8,20 +8,23 @@ export default function Home() {
     <div>
       <section style={{ marginBottom: "3rem" }}>
         <h1 style={{ fontFamily: "system-ui, sans-serif", fontSize: "1.5rem", fontWeight: 700, marginBottom: "0.75rem", letterSpacing: "-0.02em" }}>
-          你好
+          你好 / Hello
         </h1>
+        <p style={{ color: "var(--muted)", maxWidth: "52ch", lineHeight: 1.7, marginBottom: "0.5rem" }}>
+          这里是我的技术博客。记录编程、系统设计以及思考过程。
+        </p>
         <p style={{ color: "var(--muted)", maxWidth: "52ch", lineHeight: 1.7 }}>
-          这里是我的技术博客。记录编程、系统设计、以及思考过程。
-          文字由人写就，思考不可替代。
+          A tech blog where I write about programming, system design, and thinking.
+          Posts appear in Chinese or English — sometimes both.
         </p>
       </section>
 
       <section>
         <h2 style={{ fontFamily: "system-ui, sans-serif", fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--muted)", marginBottom: "1.5rem" }}>
-          最近文章
+          最近文章 / Recent Posts
         </h2>
         {posts.length === 0 ? (
-          <p style={{ color: "var(--muted)" }}>还没有文章，敬请期待。</p>
+          <p style={{ color: "var(--muted)" }}>还没有文章，敬请期待。/ No posts yet, stay tuned.</p>
         ) : (
           <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
             {posts.map((post) => (
@@ -33,9 +36,21 @@ export default function Home() {
                   >
                     {post.title}
                   </Link>
-                  <span style={{ color: "var(--muted)", fontSize: "0.8rem", fontFamily: "system-ui, sans-serif", whiteSpace: "nowrap" }}>
-                    {post.date}
-                  </span>
+                  <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexShrink: 0 }}>
+                    <span style={{
+                      fontSize: "0.7rem",
+                      fontFamily: "system-ui, sans-serif",
+                      color: "var(--muted)",
+                      background: "#f0f0ee",
+                      padding: "0.1em 0.45em",
+                      borderRadius: "3px",
+                    }}>
+                      {post.lang === "en" ? "EN" : "中"}
+                    </span>
+                    <span style={{ color: "var(--muted)", fontSize: "0.8rem", fontFamily: "system-ui, sans-serif" }}>
+                      {post.date}
+                    </span>
+                  </div>
                 </div>
                 {post.summary && (
                   <p style={{ color: "var(--muted)", fontSize: "0.9rem", margin: 0, lineHeight: 1.6 }}>
@@ -51,7 +66,7 @@ export default function Home() {
             href="/posts"
             style={{ fontFamily: "system-ui, sans-serif", fontSize: "0.85rem", color: "var(--muted)", textDecoration: "underline", textUnderlineOffset: "3px" }}
           >
-            所有文章 →
+            所有文章 / All posts →
           </Link>
         )}
       </section>

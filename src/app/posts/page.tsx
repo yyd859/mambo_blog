@@ -7,10 +7,10 @@ export default function PostsPage() {
   return (
     <div>
       <h1 style={{ fontFamily: "system-ui, sans-serif", fontSize: "1.3rem", fontWeight: 700, marginBottom: "2.5rem", letterSpacing: "-0.02em" }}>
-        所有文章
+        所有文章 / All Posts
       </h1>
       {posts.length === 0 ? (
-        <p style={{ color: "var(--muted)" }}>还没有文章，敬请期待。</p>
+        <p style={{ color: "var(--muted)" }}>还没有文章。/ No posts yet.</p>
       ) : (
         <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
           {posts.map((post) => (
@@ -22,9 +22,21 @@ export default function PostsPage() {
                 >
                   {post.title}
                 </Link>
-                <span style={{ color: "var(--muted)", fontSize: "0.8rem", fontFamily: "system-ui, sans-serif", whiteSpace: "nowrap" }}>
-                  {post.date}
-                </span>
+                <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexShrink: 0 }}>
+                  <span style={{
+                    fontSize: "0.7rem",
+                    fontFamily: "system-ui, sans-serif",
+                    color: "var(--muted)",
+                    background: "#f0f0ee",
+                    padding: "0.1em 0.45em",
+                    borderRadius: "3px",
+                  }}>
+                    {post.lang === "en" ? "EN" : "中"}
+                  </span>
+                  <span style={{ color: "var(--muted)", fontSize: "0.8rem", fontFamily: "system-ui, sans-serif" }}>
+                    {post.date}
+                  </span>
+                </div>
               </div>
               <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
                 {post.summary && (

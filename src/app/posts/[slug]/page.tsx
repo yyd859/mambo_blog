@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllSlugs, getPost } from "@/lib/posts";
 
 export async function generateStaticParams() {
@@ -9,14 +8,14 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getPost(slug);
+  const post = await getPost(slug);
   if (!post) return {};
   return { title: `${post.title} — mambo blog`, description: post.summary };
 }
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getPost(slug);
+  const post = await getPost(slug);
   if (!post) notFound();
 
   return (
@@ -33,6 +32,17 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           <span style={{ color: "var(--muted)", fontSize: "0.85rem", fontFamily: "system-ui, sans-serif" }}>
             {post.readingTime}
           </span>
+          <span style={{ color: "var(--border)" }}>·</span>
+          <span style={{
+            fontSize: "0.75rem",
+            fontFamily: "system-ui, sans-serif",
+            color: "var(--muted)",
+            background: "#f0f0ee",
+            padding: "0.1em 0.5em",
+            borderRadius: "3px",
+          }}>
+            {post.lang === "en" ? "EN" : "中文"}
+          </span>
         </div>
         {post.tags.length > 0 && (
           <div style={{ marginTop: "0.75rem", display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
@@ -45,9 +55,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         )}
       </header>
 
-      <div className="prose">
-        <MDXRemote source={post.content} />
-      </div>
+      <div
+        className="prose"
+        dangerouslySetInnerHTML={{ __html: post.htmlContent }}
+      />
 
       <footer style={{ marginTop: "3rem", paddingTop: "1.5rem", borderTop: "1px solid var(--border)" }}>
         <Link

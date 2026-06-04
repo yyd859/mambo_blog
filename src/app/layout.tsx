@@ -31,9 +31,13 @@ export default function RootLayout({
               >
                 mambo blog
               </Link>
-              <div style={{ display: "flex", gap: "1.5rem" }}>
-                <Link href="/posts" style={{ color: "var(--muted)", textDecoration: "none", fontSize: "0.9rem", fontFamily: "system-ui, sans-serif" }}>文章</Link>
-                <Link href="/about" style={{ color: "var(--muted)", textDecoration: "none", fontSize: "0.9rem", fontFamily: "system-ui, sans-serif" }}>关于</Link>
+              <div style={{ display: "flex", gap: "1.5rem", alignItems: "baseline" }}>
+                <Link href="/posts" style={{ color: "var(--muted)", textDecoration: "none", fontSize: "0.9rem", fontFamily: "system-ui, sans-serif" }}>
+                  文章 / Posts
+                </Link>
+                <Link href="/about" style={{ color: "var(--muted)", textDecoration: "none", fontSize: "0.9rem", fontFamily: "system-ui, sans-serif" }}>
+                  关于 / About
+                </Link>
               </div>
             </nav>
           </header>
