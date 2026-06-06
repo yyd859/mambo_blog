@@ -19,55 +19,51 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   if (!post) notFound();
 
   return (
-    <article>
-      <header style={{ marginBottom: "2.5rem" }}>
-        <h1 style={{ fontFamily: "system-ui, sans-serif", fontSize: "1.75rem", fontWeight: 700, lineHeight: 1.2, letterSpacing: "-0.02em", marginBottom: "0.75rem" }}>
-          {post.title}
-        </h1>
-        <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
-          <span style={{ color: "var(--muted)", fontSize: "0.85rem", fontFamily: "system-ui, sans-serif" }}>
-            {post.date}
-          </span>
-          <span style={{ color: "var(--border)" }}>·</span>
-          <span style={{ color: "var(--muted)", fontSize: "0.85rem", fontFamily: "system-ui, sans-serif" }}>
-            {post.readingTime}
-          </span>
-          <span style={{ color: "var(--border)" }}>·</span>
-          <span style={{
-            fontSize: "0.75rem",
-            fontFamily: "system-ui, sans-serif",
-            color: "var(--muted)",
-            background: "#f0f0ee",
-            padding: "0.1em 0.5em",
-            borderRadius: "3px",
-          }}>
-            {post.lang === "en" ? "EN" : "中文"}
-          </span>
-        </div>
-        {post.tags.length > 0 && (
-          <div style={{ marginTop: "0.75rem", display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
-            {post.tags.map((tag) => (
-              <span key={tag} style={{ fontSize: "0.75rem", fontFamily: "system-ui, sans-serif", color: "var(--muted)", background: "#f0f0ee", padding: "0.1em 0.5em", borderRadius: "3px" }}>
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
-      </header>
-
-      <div
-        className="prose"
-        dangerouslySetInnerHTML={{ __html: post.htmlContent }}
-      />
-
-      <footer style={{ marginTop: "3rem", paddingTop: "1.5rem", borderTop: "1px solid var(--border)" }}>
-        <Link
-          href="/posts"
-          style={{ fontFamily: "system-ui, sans-serif", fontSize: "0.85rem", color: "var(--muted)", textDecoration: "underline", textUnderlineOffset: "3px" }}
-        >
-          ← 所有文章
+    <div className="page">
+      <article className="read">
+        <Link href="/posts" className="read__back">
+          ← 返回文章列表
         </Link>
-      </footer>
-    </article>
+
+        <header className="read__head">
+          <div className="read__meta">
+            <span>{post.date}</span>
+            <span className="read__dot" />
+            <span>{post.readingTime}</span>
+            {post.tags.length > 0 && (
+              <>
+                <span className="read__dot" />
+                <span>{post.tags[0]}</span>
+              </>
+            )}
+            <span className="read__dot" />
+            <span>{post.lang === "en" ? "EN" : "中文"}</span>
+          </div>
+          <h1 className="read__title">{post.title}</h1>
+          {post.summary && <p className="read__lede">{post.summary}</p>}
+        </header>
+
+        <div
+          className="prose"
+          dangerouslySetInnerHTML={{ __html: post.htmlContent }}
+        />
+
+        {post.tags.length > 0 && (
+          <footer className="read__foot">
+            <div className="read__tags">
+              {post.tags.map((tag) => (
+                <Link
+                  key={tag}
+                  href={`/posts?q=${encodeURIComponent(tag)}`}
+                  className="tag--mini"
+                >
+                  {tag}
+                </Link>
+              ))}
+            </div>
+          </footer>
+        )}
+      </article>
+    </div>
   );
 }
