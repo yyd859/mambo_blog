@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import type { PostMeta } from "@/lib/posts";
 
@@ -9,17 +9,34 @@ interface Props {
   allTags: string[];
 }
 
+const LOCATION_EVENT = "mb-location-change";
+
+function subscribe(callback: () => void) {
+  if (typeof window === "undefined") {
+    return () => {};
+  }
+
+  const handler = () => callback();
+  window.addEventListener("popstate", handler);
+  window.addEventListener(LOCATION_EVENT, handler);
+
+  return () => {
+    window.removeEventListener("popstate", handler);
+    window.removeEventListener(LOCATION_EVENT, handler);
+  };
+}
+
+function getQuerySnapshot() {
+  if (typeof window === "undefined") {
+    return "";
+  }
+
+  return new URLSearchParams(window.location.search).get("q") ?? "";
+}
+
 export function PostsClient({ posts, allTags }: Props) {
   const [activeTag, setActiveTag] = useState("全部");
-  const [query, setQuery] = useState("");
-
-  useEffect(() => {
-    try {
-      const params = new URLSearchParams(window.location.search);
-      const q = params.get("q");
-      if (q) setQuery(q);
-    } catch {}
-  }, []);
+  const query = useSyncExternalStore(subscribe, getQuerySnapshot, () => "");
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -65,13 +82,11 @@ export function PostsClient({ posts, allTags }: Props) {
               margin: "12px 0 0",
             }}
           >
-            搜索："{query}"
-            <button
-              onClick={() => setQuery("")}
+            搜索：&ldquo;{query}&rdquo;
+            <Link
+              href="/posts"
               style={{
                 background: "none",
-                border: 0,
-                cursor: "pointer",
                 color: "var(--accent)",
                 marginLeft: 8,
                 fontFamily: "var(--mono)",
@@ -79,7 +94,7 @@ export function PostsClient({ posts, allTags }: Props) {
               }}
             >
               清除
-            </button>
+            </Link>
           </p>
         )}
 

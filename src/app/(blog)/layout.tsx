@@ -1,26 +1,7 @@
 import type { Metadata } from "next";
-import { Newsreader, JetBrains_Mono, Caveat } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { TopBar } from "@/components/TopBar";
-
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  variable: "--font-newsreader",
-  display: "swap",
-  style: ["normal", "italic"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
-  display: "swap",
-});
-
-const caveat = Caveat({
-  subsets: ["latin"],
-  variable: "--font-caveat",
-  display: "swap",
-});
+import { fontVariables } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   title: "Mambo blog",
@@ -33,10 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="zh-CN"
-      className={`${newsreader.variable} ${jetbrainsMono.variable} ${caveat.variable}`}
-    >
+    <html lang="zh-CN" className={fontVariables}>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -44,7 +22,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body>
+      <body className="blog-body">
         <TopBar />
         <main>{children}</main>
         <footer className="foot">
